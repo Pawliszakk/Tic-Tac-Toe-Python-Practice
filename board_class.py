@@ -1,6 +1,6 @@
 class Board:
     def __init__(self, player):
-        self.board= [['.','X','.'],['.','.','.'],['.','X','.']]
+        self.board= [['.','.','.'],['.','.','.'],['.','.','.']]
         self.player = player
         self.win = False
 
@@ -16,7 +16,6 @@ class Board:
             number_row += 1
 
     def check_if_win(self):
-        self.show_board()
         for x in range(0,3):
             if self.board[x][0] == self.board[x][1] and self.board[x][1] == self.board[x][2] !='.' :
                 self.win = True
@@ -52,17 +51,18 @@ class Board:
         if self.player =='O':
             self.player = 'X'
         elif self.player =='X':
-            self.player = '0'
+            self.player = 'O'
     
 
     def put_to_board(self,x,y):
         if self.check_if_free_to_put(x,y):
             self.board[x-1][y-1] = self.player
             self.change_player()
+        else:
+            print('Podane pole jest zajęte przez przeciwnika, spróboj inne pole.')
     
 
     def get_player(self):
         return self.player
-game = Board('gamer')
-is_win = game.check_if_win()
+
 
